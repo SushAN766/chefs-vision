@@ -1,13 +1,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-// Gemini API setup
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 if (!apiKey) {
   throw new Error("VITE_GEMINI_API_KEY environment variable not set");
 }
 const ai = new GoogleGenAI({ apiKey });
 
-// ✅ Recipe schema
 const recipeDetailsSchema = {
   type: Type.OBJECT,
   properties: {
@@ -27,7 +25,6 @@ const recipeDetailsSchema = {
   required: ["ingredients", "steps"],
 };
 
-// ✅ Nutritional info schema
 const nutritionalInfoSchema = {
   type: Type.OBJECT,
   properties: {
@@ -39,7 +36,6 @@ const nutritionalInfoSchema = {
   required: ["Calories", "Protein", "Carbohydrates", "Fat"],
 };
 
-// 🥣 Generate Recipe Details
 export const generateRecipeDetails = async (
   recipeName: string,
   dietaryModifier: string
@@ -69,7 +65,6 @@ export const generateRecipeDetails = async (
   };
 };
 
-// 🍽️ Generate Nutritional Info
 export const generateNutritionalInfo = async (
   ingredients: string[]
 ): Promise<Record<string, string>> => {
@@ -119,9 +114,9 @@ export const generateRecipeImage = async (
     }
 
     const data = await response.json();
-    return data.image; // base64 image URL
+    return data.image; 
   } catch (error) {
-    console.error("❌ Failed to generate image:", error);
-    return "/placeholder.jpg"; // fallback
+    console.error("Failed to generate image:", error);
+    return "/placeholder.jpg"; 
   }
 };

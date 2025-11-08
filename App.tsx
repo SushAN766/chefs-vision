@@ -28,7 +28,6 @@ const App: React.FC = () => {
         generateRecipeImage(recipeName, dietaryModifier)
       ]);
 
-      // Fetch nutritional info after details are available
       const nutritionalInfo = await generateNutritionalInfo(details.ingredients);
 
       setRecipe({
@@ -57,9 +56,8 @@ const App: React.FC = () => {
         const cardWidth = cardElement.offsetWidth;
         const cardHeight = cardElement.offsetHeight;
         
-        // Use jsPDF to create a PDF with the same dimensions as the card
         const pdf = new jsPDF({
-          orientation: cardWidth > cardHeight ? 'l' : 'p', // landscape or portrait
+          orientation: cardWidth > cardHeight ? 'l' : 'p', 
           unit: 'px',
           format: [cardWidth, cardHeight]
         });
