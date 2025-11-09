@@ -103,7 +103,7 @@ export const generateRecipeImage = async (
   const prompt = `Professional food photography of ${modifierText}${recipeName}. High resolution, realistic, appetizing, well-lit.`
 
   try {
-    const response = await fetch("http://localhost:4000/api/generate-image", {
+    const response = await fetch("https://chefs-vision-10.onrender.com/api/generate-image", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt }),
